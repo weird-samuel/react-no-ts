@@ -1,25 +1,34 @@
 import { useState } from "react";
 const Content = () => {
-  const [name, setName] = useState("Samuel");
-  const [count, setCount] = useState(0);
-
-  const handleNameChange = () => {
-    const names = ["John", "Jane", "Joe"];
-    const idx = Math.floor(Math.random() * names.length);
-    return setName(names[idx]);
-  };
-
-  const handleClick2 = () => {
-    setCount(count + 1);
-    console.log(count);
-  };
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      checked: false,
+      item: "Item 1",
+    },
+    {
+      id: 2,
+      checked: false,
+      item: "Item 2",
+    },
+    {
+      id: 3,
+      checked: false,
+      item: "Item 3",
+    },
+  ]);
 
   return (
     <main>
-      <p>Hello {name} !</p>
-      <button onClick={handleNameChange}>Click me</button>
-      <button onClick={handleClick2}>Count</button>
-      <button onClick={() => handleClick2("Samuel")}>Button 2</button>
+      <ul>
+        {items.map((item) => (
+          <li className="item" key={item.id}>
+            <input type="checkbox" checked={item.checked} />
+            <label>{item.item}</label>
+            <button>Delete</button>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 };
